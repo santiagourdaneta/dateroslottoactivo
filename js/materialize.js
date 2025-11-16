@@ -2672,7 +2672,7 @@ $(document).ready(function(){
     var range_wrapper = '.range-field';
     $(document).on('change', range_type, function(e) {
       var thumb = $(this).siblings('.thumb');
-      thumb.find('.value').html($(this).val());
+      thumb.find('.value').text($(this).val());
     });
 
     $(document).on('input mousedown touchstart', range_type, function(e) {
@@ -2685,7 +2685,7 @@ $(document).ready(function(){
       }
 
       // Set indicator value
-      thumb.find('.value').html($(this).val());
+      thumb.find('.value').text($(this).val());
 
       range_mousedown = true;
       $(this).addClass('active');
@@ -2709,7 +2709,7 @@ $(document).ready(function(){
         left = width;
       }
       thumb.addClass('active').css('left', left);
-      thumb.find('.value').html($(this).val());
+      thumb.find('.value').text($(this).val());
 
 
     });
