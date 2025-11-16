@@ -1,6 +1,16 @@
 (function($){
   $(function(){
 
+    // Escape HTML to prevent XSS (used in singleLetters)
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+       .replace(/"/g, '&quot;')
+       .replace(/'/g, '&#39;');
+    }
+
     $('.button-collapse').sideNav();
 	$('.scrollspy').scrollSpy();
 
@@ -35,6 +45,7 @@
 				letters = word.text().split(''),
 				selected = word.hasClass('is-visible');
 			for (i in letters) {
+				letters[i] = escapeHTML(letters[i]);
 				if(word.parents('.rotate-2').length > 0) letters[i] = '<em>' + letters[i] + '</em>';
 				letters[i] = (selected) ? '<i class="in">' + letters[i] + '</i>': '<i>' + letters[i] + '</i>';
 			}
