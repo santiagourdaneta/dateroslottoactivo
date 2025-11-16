@@ -4359,17 +4359,24 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
             name = name[0] + ELEMENT.name + name[1]
         }
 
+        // Function to escape attribute values for HTML-safe insertion
+        function escapeAttr(s) {
+            return String(s).replace(/&/g, '&amp;')
+                 .replace(/"/g, '&quot;')
+                 .replace(/'/g, '&#39;')
+                 .replace(/</g, '&lt;')
+                 .replace(/>/g, '&gt;');
+        }
+
         P._hidden = $(
             '<input ' +
             'type=hidden ' +
-
             // Create the name using the original input’s with a prefix and suffix.
-            'name="' + name + '"' +
-
+            'name="' + escapeAttr(name) + '"' +
             // If the element has a value, set the hidden value as well.
             (
                 $ELEMENT.data('value') || ELEMENT.value ?
-                    ' value="' + P.get('select', SETTINGS.formatSubmit) + '"' :
+                    ' value="' + escapeAttr(P.get('select', SETTINGS.formatSubmit)) + '"' :
                     ''
             ) +
             '>'
