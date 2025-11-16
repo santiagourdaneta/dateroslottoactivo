@@ -2709,7 +2709,7 @@ $(document).ready(function(){
         left = width;
       }
       thumb.addClass('active').css('left', left);
-      thumb.find('.value').html($(this).val());
+      thumb.find('.value').text($(this).val());
 
 
     });
